@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Patrick Scott Dayoan — Computer Engineer &amp; Embedded Systems</title>
+<meta name="description" content="Portfolio of Patrick Scott Dayoan, Computer Engineer specializing in Embedded Systems and Tech. Based in Taytay, Rizal, Philippines." />
+
+<!-- Open Graph / social share -->
+<meta property="og:title" content="Patrick Scott Dayoan — Computer Engineer" />
+<meta property="og:description" content="Computer Engineer · Embedded Systems · Tech Enthusiast. I build. I break. I learn. I build again." />
+<meta property="og:image" content="https://Iskyuno.github.io/portfolio/dayoan_idpic.jpg" />
+<meta property="og:url" content="https://Iskyuno.github.io/portfolio" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Patrick Scott Dayoan — Computer Engineer" />
+<meta name="twitter:description" content="Computer Engineer · Embedded Systems · Tech Enthusiast" />
+<meta name="twitter:image" content="https://Iskyuno.github.io/portfolio/dayoan_idpic.jpg" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/jpeg" href="dayoan_idpic.jpg" />
+<link rel="apple-touch-icon" href="dayoan_idpic.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* =====================================================================
+   DESIGN TOKENS  (Untitled UI gray + spacing/radius/shadow + blue accent)
+   ===================================================================== */
+:root{
+  /* --- Brand / Primary: deep blue --- */
+  --blue-25:#F5F8FF; --blue-50:#EFF6FF; --blue-100:#DBEAFE; --blue-200:#BFDBFE;
+  --blue-300:#93C5FD; --blue-400:#60A5FA; --blue-500:#3B82F6; --blue-600:#2563EB;
+  --blue-700:#1D4ED8; --blue-800:#1E40AF; --blue-900:#1E3A8A; --blue-950:#172554;
+  --primary:#1D4ED8;          /* primary action */
+  --primary-hover:#1E40AF;
+
+  /* --- Gray (Untitled UI neutral) --- */
+  --gray-25:#FCFCFD; --gray-50:#F9FAFB; --gray-100:#F2F4F7; --gray-200:#EAECF0;
+  --gray-300:#D0D5DD; --gray-400:#98A2B3; --gray-500:#667085; --gray-600:#475467;
+  --gray-700:#344054; --gray-800:#1D2939; --gray-900:#101828; --gray-950:#0C111D;
+
+  /* --- Success (for status / toast) --- */
+  --success-50:#ECFDF3; --success-500:#12B76A; --success-600:#039855;
+
+  /* --- Semantic --- */
+  --bg:#FFFFFF;
+  --surface:#FFFFFF;
+  --border:var(--gray-200);
+  --border-strong:var(--gray-300);
+  --text-primary:var(--gray-900);
+  --text-secondary:var(--gray-600);
+  --text-placeholder:var(--gray-400);
+  --icon:var(--gray-500);
+
+  /* --- Shadows (Untitled UI elevation) --- */
+  --shadow-xs:0 1px 2px rgba(16,24,40,.05);
+  --shadow-sm:0 1px 3px rgba(16,24,40,.10),0 1px 2px rgba(16,24,40,.06);
+  --shadow-md:0 4px 8px -2px rgba(16,24,40,.10),0 2px 4px -2px rgba(16,24,40,.06);
+  --shadow-lg:0 12px 16px -4px rgba(16,24,40,.08),0 4px 6px -2px rgba(16,24,40,.03);
+  --shadow-xl:0 20px 24px -4px rgba(16,24,40,.08),0 8px 8px -4px rgba(16,24,40,.03);
+  --shadow-2xl:0 24px 48px -12px rgba(16,24,40,.18);
+  --shadow-blue:0 16px 40px -12px rgba(29,78,216,.40);
+
+  /* --- Radius --- */
+  --r-xs:4px; --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px;
+  --r-2xl:16px; --r-3xl:20px; --r-4xl:24px; --r-full:9999px;
+
+  /* --- Type --- */
+  --font-sans:'Inter','SF Pro Text',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono','SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;
+
+  /* --- Motion --- */
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-soft:cubic-bezier(.33,.8,.4,1);
+
+  /* --- Layout --- */
+  --maxw:1280px;
+  --nav-h:72px;
+  --focus:0 0 0 4px rgba(29,78,216,.22);
+}
+
+/* =====================================================================
+   RESET
+   ===================================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--text-primary);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body.modal-open{overflow:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font:inherit;color:inherit}
+ul{list-style:none}
+::selection{background:var(--blue-200);color:var(--blue-950)}
+
+:focus-visible{outline:none;box-shadow:var(--focus);border-radius:var(--r-sm)}
+
+/* =====================================================================
+   LAYOUT PRIMITIVES
+   ===================================================================== */
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(16px,5vw,32px)}
+.section{padding-block:clamp(56px,9vw,112px);position:relative}
+.section[id]{scroll-margin-top:96px}
+
+/* eyebrow / section index label */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:13px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--primary);
+}
+.eyebrow::before{content:"";width:24px;height:1.5px;background:var(--primary);display:inline-block}
+
+.section-head{max-width:720px;margin-bottom:clamp(40px,5vw,64px)}
+.section-head h2{
+  font-size:clamp(28px,4.4vw,44px);line-height:1.1;font-weight:600;
+  letter-spacing:-.02em;color:var(--gray-900);margin-top:18px;
+}
+.section-head p{font-size:clamp(16px,2vw,20px);color:var(--text-secondary);margin-top:18px;line-height:1.6}
+
+/* =====================================================================
+   BUTTONS
+   ===================================================================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-weight:600;white-space:nowrap;border-radius:var(--r-md);
+  transition:background .2s var(--ease),color .2s var(--ease),
+             box-shadow .2s var(--ease),transform .2s var(--ease),border-color .2s var(--ease);
+}
+.btn svg{width:18px;height:18px;flex-shrink:0}
+.btn-lg{height:48px;padding-inline:22px;font-size:16px}
+.btn-md{height:40px;padding-inline:16px;font-size:14px}
+
+.btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-xs)}
+.btn-primary:hover{background:var(--primary-hover);box-shadow:var(--shadow-blue);transform:translateY(-2px)}
+.btn-primary:active{transform:translateY(0)}
+
+.btn-secondary{background:#fff;color:var(--gray-700);border:1px solid var(--border-strong);box-shadow:var(--shadow-xs)}
+.btn-secondary:hover{background:var(--gray-50);border-color:var(--gray-400);color:var(--gray-900);transform:translateY(-2px)}
+.btn-secondary:active{transform:translateY(0)}
+
+.btn .arrow{transition:transform .25s var(--ease)}
+.btn:hover .arrow{transform:translate(3px,-3px)}
+
+/* =====================================================================
+   HEADER / NAV
+   ===================================================================== */
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:100;height:var(--nav-h);
+  display:flex;align-items:center;
+  transition:background .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.site-header.scrolled{
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  border-bottom-color:var(--border);
+  box-shadow:var(--shadow-sm);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;width:100%}
+
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;color:var(--gray-900)}
+.brand .mark{
+  width:38px;height:38px;border-radius:var(--r-lg);display:grid;place-items:center;
+  background:var(--primary);color:#fff;font-family:var(--font-mono);font-weight:600;
+  font-size:15px;letter-spacing:-.04em;box-shadow:var(--shadow-blue);position:relative;overflow:hidden;
+}
+.brand .mark::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.35),transparent 55%)}
+.brand .mark img{width:100%;height:100%;object-fit:cover}
+.brand .name{font-size:15px;letter-spacing:-.01em}
+.brand .name small{display:block;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--gray-500);letter-spacing:.02em}
+
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{
+  position:relative;padding:8px 14px;border-radius:var(--r-md);
+  font-size:14px;font-weight:500;color:var(--gray-600);
+  transition:color .2s var(--ease),background .2s var(--ease);
+}
+.nav-link:hover{color:var(--gray-900);background:var(--gray-100)}
+.nav-link.active{color:var(--primary);font-weight:600}
+.nav-link.active::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;
+  background:var(--primary);border-radius:2px;
+}
+/* CTA inside nav-links is for the mobile drawer only; hidden on desktop */
+.nav-links>.btn{display:none}
+.nav-cta{display:flex;align-items:center;gap:6px}
+.nav-social{width:40px;height:40px;border-radius:var(--r-md);display:grid;place-items:center;color:var(--gray-500);transition:color .2s var(--ease),background .2s var(--ease)}
+.nav-social:hover{color:var(--primary);background:var(--gray-100)}
+.nav-social svg{width:20px;height:20px}
+
+.menu-btn{display:none;width:42px;height:42px;border-radius:var(--r-md);align-items:center;justify-content:center;color:var(--gray-700)}
+.menu-btn:hover{background:var(--gray-100)}
+.menu-btn svg{width:24px;height:24px}
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero{
+  position:relative;min-height:100vh;min-height:100svh;
+  display:flex;align-items:center;overflow:hidden;
+  padding-top:calc(var(--nav-h) + 24px);padding-bottom:80px;
+}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+/* blueprint grid */
+.hero-bg .grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(to right,rgba(29,78,216,.06) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(29,78,216,.06) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 35%,transparent 78%);
+          mask-image:radial-gradient(120% 90% at 50% 0%,#000 35%,transparent 78%);
+}
+/* floating blurred blobs */
+.blob{position:absolute;border-radius:var(--r-full);filter:blur(70px);opacity:.55;will-change:transform}
+.blob.b1{width:520px;height:520px;background:radial-gradient(circle,#BFDBFE,transparent 70%);top:-160px;right:-120px;animation:float1 18s ease-in-out infinite}
+.blob.b2{width:440px;height:440px;background:radial-gradient(circle,#DBEAFE,transparent 70%);bottom:-180px;left:-100px;animation:float2 22s ease-in-out infinite}
+.blob.b3{width:300px;height:300px;background:radial-gradient(circle,#EFF6FF,transparent 70%);top:30%;left:45%;animation:float1 26s ease-in-out infinite reverse;opacity:.7}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,30px) scale(1.08)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-30px) scale(1.12)}}
+/* animated PCB / circuit-board pattern */
+.hero-bg .circuit{
+  position:absolute;inset:0;width:100%;height:100%;
+  -webkit-mask-image:radial-gradient(125% 95% at 50% 8%,#000 28%,transparent 82%);
+          mask-image:radial-gradient(125% 95% at 50% 8%,#000 28%,transparent 82%);
+}
+.circuit .trace{fill:none;stroke:var(--blue-300);stroke-width:1.5;opacity:.5}
+.circuit .pad{fill:#fff;stroke:var(--blue-300);stroke-width:1.5}
+.circuit .node{fill:var(--blue-400);animation:nodePulse 3.2s var(--ease) infinite}
+.circuit .node:nth-of-type(2n){animation-delay:.6s}
+.circuit .node:nth-of-type(3n){animation-delay:1.3s}
+.circuit .node:nth-of-type(4n){animation-delay:1.9s}
+@keyframes nodePulse{0%,100%{opacity:.3}50%{opacity:1}}
+.circuit .flow{
+  fill:none;stroke:var(--blue-500);stroke-width:2.5;stroke-linecap:round;
+  stroke-dasharray:46 1000;stroke-dashoffset:1046;
+  filter:drop-shadow(0 0 5px rgba(59,130,246,.55));
+  animation:flow 5.5s linear infinite;
+}
+.circuit .f2{animation-duration:6.5s;animation-delay:1.2s}
+.circuit .f3{animation-duration:7s;animation-delay:2.4s}
+.circuit .f4{animation-duration:5s;animation-delay:.6s}
+@keyframes flow{from{stroke-dashoffset:1046}to{stroke-dashoffset:0}}
+
+.hero-inner{position:relative;z-index:2;width:100%;max-width:920px}
+
+/* hero location badge */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 11px;
+  background:#fff;border:1px solid var(--border);border-radius:var(--r-full);
+  font-family:var(--font-mono);font-size:13px;color:var(--gray-600);
+  box-shadow:var(--shadow-xs);
+}
+.hero-badge svg{width:15px;height:15px;color:var(--primary)}
+
+h1.hero-title{
+  font-size:clamp(46px,9vw,92px);line-height:.98;font-weight:600;
+  letter-spacing:-.035em;color:var(--gray-900);margin:24px 0 22px;
+}
+.hero-title .ln{display:block;overflow:hidden}
+
+/* animated role line */
+.roles{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:24px;
+  font-size:clamp(16px,2.4vw,22px);font-weight:500;color:var(--gray-500);
+}
+.role{transition:color .4s var(--ease),transform .4s var(--ease);position:relative;padding-bottom:2px}
+.role.on{color:var(--primary)}
+.role.on::after{content:"";position:absolute;left:0;bottom:-3px;height:2px;width:100%;background:var(--primary);border-radius:2px;
+  transform-origin:left;animation:underline 2s var(--ease)}
+@keyframes underline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.role .dot{color:var(--gray-300);margin-left:14px;font-weight:400}
+
+.hero-tagline{
+  font-size:clamp(18px,2.4vw,24px);color:var(--text-secondary);max-width:620px;
+  line-height:1.5;margin-bottom:36px;
+}
+.hero-tagline b{color:var(--gray-900);font-weight:600}
+.hero-tagline .hl{color:var(--primary);font-weight:600}
+
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+
+/* scroll indicator */
+.scroll-ind{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;color:var(--gray-400);
+  text-transform:uppercase;
+}
+.scroll-ind .line{width:1.5px;height:46px;background:linear-gradient(var(--gray-300),transparent);position:relative;overflow:hidden;border-radius:2px}
+.scroll-ind .line::after{content:"";position:absolute;top:-50%;left:0;width:100%;height:50%;background:var(--primary);border-radius:2px;animation:scrolldot 2s var(--ease) infinite}
+@keyframes scrolldot{0%{top:-50%}60%,100%{top:100%}}
+
+/* =====================================================================
+   ABOUT
+   ===================================================================== */
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:start}
+.about-copy p{font-size:18px;line-height:1.7;color:var(--text-secondary);margin-top:20px}
+.about-copy p:first-child{margin-top:0;font-size:20px;color:var(--gray-800)}
+.about-copy p b{color:var(--gray-900);font-weight:600}
+.about-sign{margin-top:32px;display:flex;align-items:center;gap:14px;font-family:var(--font-mono);font-size:13px;color:var(--gray-500)}
+.about-sign .ln{width:40px;height:1.5px;background:var(--gray-300)}
+
+.stat-stack{display:flex;flex-direction:column;gap:16px}
+.stat-card{
+  position:relative;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-2xl);padding:28px;box-shadow:var(--shadow-sm);overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+}
+.stat-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--primary);transform:scaleY(0);transform-origin:top;transition:transform .4s var(--ease)}
+.stat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--blue-200)}
+.stat-card:hover::before{transform:scaleY(1)}
+.stat-corner{position:absolute;top:14px;right:16px;font-family:var(--font-mono);font-size:12px;color:var(--gray-300)}
+.stat-value{display:flex;align-items:baseline;gap:4px;font-size:clamp(38px,5vw,52px);font-weight:600;letter-spacing:-.03em;color:var(--gray-900);line-height:1}
+.stat-value .unit{font-size:22px;font-weight:600;color:var(--primary)}
+.stat-label{margin-top:10px;font-size:15px;color:var(--text-secondary);font-weight:500}
+
+/* =====================================================================
+   SKILLS
+   ===================================================================== */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.skill-card{
+  position:relative;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-2xl);padding:32px;box-shadow:var(--shadow-sm);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+  overflow:hidden;
+}
+.skill-card::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(120% 100% at 100% 0%,rgba(29,78,216,.05),transparent 55%);
+  opacity:0;transition:opacity .3s var(--ease)}
+.skill-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--blue-200)}
+.skill-card:hover::after{opacity:1}
+.skill-icon{
+  width:52px;height:52px;border-radius:var(--r-xl);display:grid;place-items:center;
+  background:var(--blue-50);color:var(--primary);margin-bottom:20px;
+  transition:background .3s var(--ease),transform .3s var(--ease);
+}
+.skill-icon svg{width:26px;height:26px;stroke-width:1.6}
+.skill-card:hover .skill-icon{background:var(--primary);color:#fff;transform:scale(1.05) rotate(-3deg)}
+.skill-card h3{font-size:20px;font-weight:600;letter-spacing:-.01em;color:var(--gray-900);margin-bottom:4px}
+.skill-card .skill-sub{font-family:var(--font-mono);font-size:12px;color:var(--gray-400);margin-bottom:18px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-family:var(--font-mono);font-size:12.5px;font-weight:500;color:var(--gray-700);
+  background:var(--gray-50);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:5px 10px;transition:all .2s var(--ease);
+}
+.skill-card:hover .tag{border-color:var(--blue-200)}
+.tag:hover{background:var(--blue-50);color:var(--primary);border-color:var(--blue-300)}
+
+/* =====================================================================
+   PROJECTS
+   ===================================================================== */
+.projects-list{display:flex;flex-direction:column;gap:32px}
+.project{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:0;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-3xl);
+  overflow:hidden;box-shadow:var(--shadow-sm);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.project:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:var(--blue-200)}
+.project-content{padding:clamp(28px,4vw,48px);display:flex;flex-direction:column}
+.project-num{font-family:var(--font-mono);font-size:14px;font-weight:600;color:var(--primary);letter-spacing:.05em;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.project-num .badge{font-size:11px;color:var(--gray-500);background:var(--gray-100);border-radius:var(--r-full);padding:3px 10px;letter-spacing:.02em;font-weight:500}
+.project h3{font-size:clamp(24px,3vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--gray-900);line-height:1.15;margin-bottom:14px}
+.project p{font-size:16px;line-height:1.65;color:var(--text-secondary);margin-bottom:22px}
+.project .tag-row{margin-bottom:26px}
+.project-link{
+  margin-top:auto;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  font-weight:600;font-size:15px;color:var(--primary);padding:4px 0;
+  transition:gap .2s var(--ease);
+}
+.project-link:hover{gap:12px}
+.project-link svg{width:18px;height:18px;transition:transform .25s var(--ease)}
+.project-link:hover svg{transform:translate(2px,-2px)}
+
+/* project visual panel */
+.project-visual{
+  position:relative;min-height:260px;overflow:hidden;
+  background:linear-gradient(135deg,var(--blue-700),var(--blue-900));
+  display:grid;place-items:center;
+}
+.project-visual .pv-grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.10) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px);
+  background-size:38px 38px;-webkit-mask-image:radial-gradient(100% 100% at 50% 50%,#000,transparent 75%);mask-image:radial-gradient(100% 100% at 50% 50%,#000,transparent 75%)}
+.project-visual .pv-num{position:absolute;top:18px;right:24px;font-family:var(--font-mono);font-size:clamp(70px,10vw,120px);font-weight:600;color:rgba(255,255,255,.10);line-height:.8;letter-spacing:-.04em}
+.project-visual .pv-icon{position:relative;z-index:2;width:96px;height:96px;color:rgba(255,255,255,.92);transition:transform .5s var(--ease)}
+.project-visual .pv-icon svg{width:100%;height:100%;stroke-width:1.2}
+.project:hover .pv-icon{transform:scale(1.08) translateY(-4px)}
+.project-visual .pv-glow{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.55),transparent 70%);filter:blur(20px);z-index:1}
+.project.flip{grid-template-columns:.9fr 1.1fr}
+.project.flip .project-visual{order:-1}
+
+/* =====================================================================
+   EXPERIENCE — timeline
+   ===================================================================== */
+.timeline{position:relative;max-width:840px;padding-left:0}
+.tl-item{position:relative;padding:0 0 44px 56px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:13px;top:6px;bottom:-6px;width:2px;background:var(--border)}
+.tl-item:last-child::before{display:none}
+.tl-item.is-edu::before{background:repeating-linear-gradient(var(--blue-200) 0 6px,transparent 6px 12px)}
+.tl-dot{
+  position:absolute;left:0;top:2px;width:28px;height:28px;border-radius:var(--r-full);
+  background:#fff;border:2px solid var(--primary);display:grid;place-items:center;z-index:2;
+  box-shadow:0 0 0 5px var(--blue-50);
+}
+.tl-dot svg{width:14px;height:14px;color:var(--primary)}
+.tl-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-2xl);
+  padding:24px 26px;box-shadow:var(--shadow-xs);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+}
+.tl-card:hover{transform:translateX(6px);box-shadow:var(--shadow-md);border-color:var(--blue-200)}
+.tl-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-bottom:6px}
+.tl-org{font-size:18px;font-weight:600;color:var(--gray-900);letter-spacing:-.01em}
+.tl-date{font-family:var(--font-mono);font-size:12.5px;color:var(--primary);background:var(--blue-50);border-radius:var(--r-full);padding:4px 12px;font-weight:500;white-space:nowrap}
+.tl-role{font-size:15px;font-weight:500;color:var(--gray-700);margin-bottom:8px}
+.tl-loc{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:var(--gray-500)}
+.tl-loc svg{width:14px;height:14px;color:var(--gray-400)}
+
+/* =====================================================================
+   CERTIFICATIONS
+   ===================================================================== */
+.cert-row{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.cert-card{
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);
+  box-shadow:var(--shadow-xs);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+}
+.cert-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:var(--shadow-lg);border-color:var(--blue-200)}
+/* clickable certificate thumbnail */
+.cert-thumb{
+  position:relative;display:block;width:100%;height:160px;
+  background:var(--blue-50);border-bottom:1px solid var(--border);
+  overflow:hidden;cursor:zoom-in;
+}
+.cert-thumb img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;transition:transform .45s var(--ease)}
+.cert-card:hover .cert-thumb img{transform:scale(1.04)}
+/* placeholder shown until a real photo is dropped in */
+.cert-thumb-ph{
+  position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  color:var(--blue-300);text-align:center;
+  background-image:linear-gradient(to right,rgba(29,78,216,.07) 1px,transparent 1px),
+                   linear-gradient(to bottom,rgba(29,78,216,.07) 1px,transparent 1px);
+  background-size:18px 18px;
+}
+.cert-thumb-ph svg{width:30px;height:30px}
+.cert-thumb-ph span{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--blue-400)}
+.cert-zoom{
+  position:absolute;z-index:2;top:10px;right:10px;width:32px;height:32px;border-radius:var(--r-full);
+  background:rgba(255,255,255,.92);backdrop-filter:blur(4px);color:var(--primary);
+  display:grid;place-items:center;box-shadow:var(--shadow-xs);
+  opacity:0;transform:scale(.85);transition:opacity .25s var(--ease),transform .25s var(--ease);
+}
+.cert-thumb:hover .cert-zoom,.cert-thumb:focus-visible .cert-zoom{opacity:1;transform:scale(1)}
+.cert-zoom svg{width:17px;height:17px}
+.cert-body{padding:18px 20px 22px}
+.cert-body h4{font-size:16px;font-weight:600;color:var(--gray-900);line-height:1.3;letter-spacing:-.01em}
+.cert-body .cert-issuer{font-size:13.5px;color:var(--text-secondary);margin-top:4px}
+.cert-body .cert-date{font-family:var(--font-mono);font-size:12px;color:var(--gray-400);margin-top:10px}
+
+/* =====================================================================
+   CONTACT
+   ===================================================================== */
+.contact{position:relative;overflow:hidden}
+.contact .section-head{margin-inline:auto;text-align:center;max-width:640px}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,64px);align-items:start;max-width:1000px;margin-inline:auto}
+.contact-info{display:flex;flex-direction:column;gap:14px}
+.contact-item{
+  display:flex;align-items:center;gap:16px;padding:18px 20px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);
+  box-shadow:var(--shadow-xs);transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
+}
+.contact-item:hover{transform:translateX(4px);border-color:var(--blue-200);box-shadow:var(--shadow-sm)}
+.contact-item .ci-icon{width:44px;height:44px;flex-shrink:0;border-radius:var(--r-lg);background:var(--blue-50);color:var(--primary);display:grid;place-items:center}
+.contact-item .ci-icon svg{width:22px;height:22px}
+.contact-item .ci-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-right:10px}
+.contact-item .ci-value{font-size:16px;font-weight:400;color:var(--gray-900);margin-top:2px}
+
+/* form */
+.contact-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-2xl);padding:clamp(24px,4vw,36px);box-shadow:var(--shadow-sm)}
+/* wave inputs (Uiverse.io · AbanoubMagdy1) — accent = portfolio blue (--primary = #1D4ED8) */
+.wave-group{position:relative;margin-top:26px}
+.wave-group:first-child{margin-top:0}
+.wave-group .input{font-size:16px;padding:10px 10px 10px 5px;display:block;width:100%;border:none;border-bottom:1px solid var(--border-strong);border-radius:0;background:transparent;color:inherit;-webkit-appearance:none;appearance:none;transition:0.2s ease all}
+.wave-group .input:focus,.wave-group .input:focus-visible{outline:none;box-shadow:none;border-radius:0}
+.wave-group textarea.input{resize:vertical;min-height:96px;line-height:1.5}
+.wave-group .label{color:var(--text-placeholder);font-size:18px;font-weight:normal;position:absolute;pointer-events:none;left:5px;top:10px;display:flex}
+.wave-group .label-char{transition:0.2s ease all;transition-delay:calc(var(--index) * .05s)}
+.wave-group .input:focus ~ label .label-char,.wave-group .input:valid ~ label .label-char{transform:translateY(-20px);font-size:14px;color:var(--primary)}
+.wave-group .bar{position:relative;display:block;width:100%}
+.wave-group .bar:before,.wave-group .bar:after{content:'';height:2px;width:0;bottom:1px;position:absolute;background:var(--primary);transition:0.2s ease all}
+.wave-group .bar:before{left:50%}
+.wave-group .bar:after{right:50%}
+.wave-group .input:focus ~ .bar:before,.wave-group .input:focus ~ .bar:after{width:50%}
+/* validation feedback */
+.wave-group.err .input{border-bottom-color:#D92D20}
+.wave-group.err .bar:before,.wave-group.err .bar:after{background:#D92D20;width:50%}
+.wave-group .wave-error{display:none;font-size:13px;color:#D92D20;margin-top:6px}
+.wave-group.err .wave-error{display:block}
+.contact-form .btn{width:100%;margin-top:24px}
+
+/* toast */
+.toast{
+  position:fixed;right:24px;bottom:24px;z-index:200;width:min(360px,calc(100vw - 32px));
+  background:#fff;border:1px solid var(--border);border-radius:var(--r-xl);
+  box-shadow:var(--shadow-lg);padding:16px;display:flex;gap:12px;align-items:flex-start;
+  transform:translateY(140%);opacity:0;transition:transform .45s var(--ease),opacity .45s var(--ease);
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast .t-icon{flex-shrink:0;width:38px;height:38px;border-radius:var(--r-full);background:var(--success-50);color:var(--success-600);display:grid;place-items:center}
+.toast .t-icon svg{width:20px;height:20px}
+.toast .t-title{font-size:15px;font-weight:600;color:var(--gray-900)}
+.toast .t-msg{font-size:14px;color:var(--text-secondary);margin-top:2px}
+
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
+.site-footer{border-top:1px solid var(--border);background:var(--gray-50);padding-block:48px 32px}
+.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-start}
+.footer-brand{max-width:340px}
+.footer-brand .brand{margin-bottom:14px}
+.footer-brand p{font-size:14px;color:var(--text-secondary);line-height:1.6}
+.footer-links{display:flex;gap:48px;flex-wrap:wrap}
+.footer-col h5{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:14px}
+.footer-col a{display:block;font-size:14px;color:var(--gray-600);padding:5px 0;transition:color .2s var(--ease)}
+.footer-col a:hover{color:var(--primary)}
+.footer-bottom{margin-top:40px;padding-top:24px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
+.footer-bottom p{font-size:13.5px;color:var(--gray-500)}
+.footer-bottom .made{font-family:var(--font-mono);font-size:12.5px}
+.to-top{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;color:var(--gray-600);padding:8px 14px;border:1px solid var(--border);border-radius:var(--r-full);background:#fff;transition:all .2s var(--ease)}
+.to-top:hover{color:var(--primary);border-color:var(--blue-300);transform:translateY(-2px)}
+.to-top svg{width:15px;height:15px}
+
+/* =====================================================================
+   MODALS
+   ===================================================================== */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-backdrop{position:absolute;inset:0;background:rgba(16,24,40,.78);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s var(--ease)}
+.modal.open .modal-backdrop{opacity:1}
+.modal-dialog{
+  position:relative;background:#fff;border-radius:var(--r-2xl);box-shadow:var(--shadow-2xl);
+  width:min(640px,100%);max-height:88vh;overflow-y:auto;padding:32px;
+  transform:translateY(20px) scale(.97);opacity:0;transition:transform .35s var(--ease),opacity .35s var(--ease);
+}
+.modal.open .modal-dialog{transform:translateY(0) scale(1);opacity:1}
+.modal-close{position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:var(--r-md);display:grid;place-items:center;color:var(--gray-500);transition:background .2s,color .2s}
+.modal-close:hover{background:var(--gray-100);color:var(--gray-900)}
+.modal-close svg{width:20px;height:20px}
+.modal-head .eyebrow{margin-bottom:12px}
+.modal-head h3{font-size:26px;font-weight:600;letter-spacing:-.02em;color:var(--gray-900);line-height:1.2;padding-right:40px}
+.modal-body{margin-top:18px}
+.modal-body p{font-size:16px;line-height:1.7;color:var(--text-secondary)}
+.modal-body h4{font-size:14px;font-weight:600;color:var(--gray-900);margin:24px 0 12px;font-family:var(--font-mono);letter-spacing:.02em}
+.feature-list li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:15px;color:var(--gray-700);line-height:1.5}
+.feature-list li svg{flex-shrink:0;width:20px;height:20px;color:var(--success-600);margin-top:1px}
+.feature-list li b{color:var(--gray-900);font-weight:600}
+.modal-body .tag-row{margin-top:22px}
+
+/* lightbox (certificate preview) */
+.lightbox{padding:clamp(16px,5vw,48px)}
+.lightbox-figure{
+  position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:14px;
+  max-width:min(1100px,90vw);transform:scale(.96);opacity:0;
+  transition:transform .35s var(--ease),opacity .35s var(--ease);
+}
+.lightbox.open .lightbox-figure{transform:none;opacity:1}
+.lightbox-figure img{max-width:100%;max-height:90vh;object-fit:contain;border-radius:var(--r-xl);background:var(--surface);box-shadow:var(--shadow-2xl)}
+.lightbox-figure figcaption{font-family:var(--font-mono);font-size:13px;color:rgba(255,255,255,.85);text-align:center;letter-spacing:.02em}
+.lightbox .lightbox-close{position:absolute;top:-46px;right:0;color:#fff;background:rgba(255,255,255,.12)}
+.lightbox .lightbox-close:hover{background:rgba(255,255,255,.24);color:#fff}
+@media (max-width:640px){.lightbox .lightbox-close{top:8px;right:8px;background:rgba(16,24,40,.55)}}
+
+/* =====================================================================
+   SCROLL REVEAL
+   ===================================================================== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0) * 90ms);will-change:opacity,transform}
+.reveal.in-view{opacity:1;transform:none}
+
+/* hero load animation */
+[data-hero]{opacity:0;transform:translateY(26px);animation:heroIn .9s var(--ease) forwards;animation-delay:calc(var(--d,0) * 1ms)}
+@keyframes heroIn{to{opacity:1;transform:none}}
+
+/* =====================================================================
+   DARK MODE TOGGLE  (Uiverse.io — RiccardoRapelli)
+   ===================================================================== */
+.switch{position:relative;display:inline-block;width:60px;height:34px;flex-shrink:0}
+.switch #dark-toggle{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#2196f3;transition:0.4s;z-index:0;overflow:hidden}
+.sun-moon{position:absolute;height:26px;width:26px;left:4px;bottom:4px;background-color:yellow;transition:0.4s}
+#dark-toggle:checked + .slider{background-color:black}
+#dark-toggle:checked + .slider .sun-moon{transform:translateX(26px);background-color:white;animation:rotate-center 0.6s ease-in-out both}
+#dark-toggle:focus-visible + .slider{box-shadow:0 0 0 4px rgba(59,130,246,.45)}
+.moon-dot{opacity:0;transition:0.4s;fill:gray}
+#dark-toggle:checked + .slider .sun-moon .moon-dot{opacity:1}
+.slider.round{border-radius:34px}
+.slider.round .sun-moon{border-radius:50%}
+#moon-dot-1{left:10px;top:3px;position:absolute;width:6px;height:6px;z-index:4}
+#moon-dot-2{left:2px;top:10px;position:absolute;width:10px;height:10px;z-index:4}
+#moon-dot-3{left:16px;top:18px;position:absolute;width:3px;height:3px;z-index:4}
+#light-ray-1{left:-8px;top:-8px;position:absolute;width:43px;height:43px;z-index:-1;fill:white;opacity:10%}
+#light-ray-2{left:-50%;top:-50%;position:absolute;width:55px;height:55px;z-index:-1;fill:white;opacity:10%}
+#light-ray-3{left:-18px;top:-18px;position:absolute;width:60px;height:60px;z-index:-1;fill:white;opacity:10%}
+.cloud-light{position:absolute;fill:#eee;animation:cloud-move 6s infinite}
+.cloud-dark{position:absolute;fill:#ccc;animation:cloud-move 6s infinite;animation-delay:1s}
+#cloud-1{left:30px;top:15px;width:40px}
+#cloud-2{left:44px;top:10px;width:20px}
+#cloud-3{left:18px;top:24px;width:30px}
+#cloud-4{left:36px;top:18px;width:40px}
+#cloud-5{left:48px;top:14px;width:20px}
+#cloud-6{left:22px;top:26px;width:30px}
+@keyframes cloud-move{0%{transform:translateX(0)}40%{transform:translateX(4px)}80%{transform:translateX(-4px)}100%{transform:translateX(0)}}
+.stars{transform:translateY(-32px);opacity:0;transition:0.4s}
+.star{fill:white;position:absolute;transition:0.4s;animation:star-twinkle 2s infinite}
+#dark-toggle:checked + .slider .stars{transform:translateY(0);opacity:1}
+#star-1{width:20px;top:2px;left:3px;animation-delay:0.3s}
+#star-2{width:6px;top:16px;left:3px}
+#star-3{width:12px;top:20px;left:10px;animation-delay:0.6s}
+#star-4{width:18px;top:0px;left:18px;animation-delay:1.3s}
+@keyframes star-twinkle{0%{transform:scale(1)}40%{transform:scale(1.2)}80%{transform:scale(0.8)}100%{transform:scale(1)}}
+@keyframes rotate-center{0%{transform:translateX(26px) rotate(0deg)}100%{transform:translateX(26px) rotate(360deg)}}
+
+/* =====================================================================
+   DARK THEME  (remap design tokens → slate; entire system inverts)
+   ===================================================================== */
+body.dark{
+  /* invert the neutral ramp → slate */
+  --gray-25:#0F172A;  --gray-50:#1E293B;  --gray-100:#334155; --gray-200:#334155;
+  --gray-300:#475569; --gray-400:#64748B; --gray-500:#94A3B8; --gray-600:#CBD5E1;
+  --gray-700:#D8E0EA; --gray-800:#E2E8F0; --gray-900:#F1F5F9; --gray-950:#F8FAFC;
+
+  /* brighten brand so it reads on dark yet still works as a button bg */
+  --primary:#3B82F6; --primary-hover:#60A5FA;
+  --blue-50:rgba(59,130,246,.14); --blue-200:rgba(96,165,250,.40);
+
+  /* semantic surfaces */
+  --bg:#0F172A; --surface:#1E293B;
+  --border:#334155; --border-strong:#475569;
+  --text-primary:#F1F5F9; --text-secondary:#CBD5E1;
+  --text-placeholder:#64748B; --icon:#94A3B8;
+
+  /* deeper elevation + brighter focus ring for dark */
+  --focus:0 0 0 4px rgba(96,165,250,.35);
+  --shadow-xs:0 1px 2px rgba(0,0,0,.40);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.50),0 1px 2px rgba(0,0,0,.40);
+  --shadow-md:0 4px 8px -2px rgba(0,0,0,.50),0 2px 4px -2px rgba(0,0,0,.40);
+  --shadow-lg:0 12px 16px -4px rgba(0,0,0,.50),0 4px 6px -2px rgba(0,0,0,.40);
+  --shadow-xl:0 20px 24px -4px rgba(0,0,0,.55),0 8px 8px -4px rgba(0,0,0,.40);
+  --shadow-2xl:0 24px 48px -12px rgba(0,0,0,.70);
+}
+/* hardcoded light surfaces that don't read from tokens */
+body.dark .site-header.scrolled{background:rgba(15,23,42,.82);border-bottom-color:var(--border)}
+body.dark .hero-badge{background:var(--surface);border-color:var(--border)}
+body.dark .btn-secondary{background:var(--surface)}
+body.dark .btn-secondary:hover{background:var(--gray-100)}
+body.dark .modal-dialog,body.dark .toast,body.dark .to-top,body.dark .tl-dot{background:var(--surface)}
+body.dark .cert-zoom{background:rgba(30,41,59,.92)}
+body.dark .blob{opacity:.22}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+@media (max-width:1024px){
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .contact-grid{grid-template-columns:1fr;gap:32px}
+}
+@media (max-width:880px){
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .nav-cta .btn{display:none}
+  .nav-social{display:none}
+  .skills-grid{grid-template-columns:1fr}
+  .cert-row{grid-template-columns:1fr}
+  .project,.project.flip{grid-template-columns:1fr}
+  .project.flip .project-visual{order:0}
+  .project-visual{min-height:200px;order:-1}
+  .project-content{order:1}
+
+  /* mobile drawer */
+  .nav-links{
+    position:fixed;inset:var(--nav-h) 0 auto 0;flex-direction:column;align-items:stretch;
+    gap:4px;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);
+    padding:16px clamp(16px,5vw,32px) 24px;border-bottom:1px solid var(--border);
+    box-shadow:var(--shadow-lg);transform:translateY(-12px);opacity:0;pointer-events:none;
+    transition:transform .3s var(--ease),opacity .3s var(--ease);
+  }
+  .nav-links.show{display:flex;transform:none;opacity:1;pointer-events:auto}
+  .nav-link{padding:14px 16px;font-size:16px}
+  .nav-link.active::after{display:none}
+  .nav-link.active{background:var(--blue-50)}
+  .nav-links .btn{display:flex;margin-top:8px}
+}
+@media (max-width:640px){
+  .footer-links{gap:32px}
+  .footer-top{flex-direction:column}
+  .toast{right:16px;left:16px;bottom:16px;width:auto}
+  .modal-dialog{padding:24px 20px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  [data-hero]{opacity:1;transform:none}
+  .blob,.circuit .flow,.circuit .node,.scroll-ind .line::after{animation:none!important}
+}
+</style>
+</head>
+<body>
+<script>
+/* apply saved theme before first paint to avoid a flash */
+(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(t===null&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.body.classList.add('dark');}}catch(e){}})();
+</script>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="top">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Patrick Scott Dayoan — home">
+      <span class="mark"><img src="dayoan_idpic.jpg" alt="Scott Dayoan" /></span>
+      <span class="name">Scott Dayoan<small>Computer Engineer</small></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#contact" class="btn btn-md btn-primary">Get in touch</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="nav-social" href="https://github.com/Iskyuno" target="_blank" rel="noopener" aria-label="GitHub profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
+      </a>
+      <a class="nav-social" href="https://www.linkedin.com/in/scottdyn/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+      </a>
+      <a href="Dayoan_Resume_LinkedIn.pdf" download class="btn btn-md btn-secondary cv-btn">Download CV ↓</a>
+      <a href="#contact" class="btn btn-md btn-primary">Get in touch</a>
+
+      <label class="switch" title="Toggle dark mode">
+        <input id="dark-toggle" type="checkbox" aria-label="Toggle dark mode" />
+        <div class="slider round">
+          <div class="sun-moon">
+            <svg id="moon-dot-1" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="moon-dot-2" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="moon-dot-3" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="light-ray-1" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="light-ray-2" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="light-ray-3" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="cloud-1" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="cloud-2" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="cloud-3" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="cloud-4" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="cloud-5" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+            <svg id="cloud-6" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+          </div>
+          <div class="stars">
+            <svg id="star-1" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+            <svg id="star-2" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+            <svg id="star-3" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+            <svg id="star-4" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+          </div>
+        </div>
+      </label>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="grid"></div>
+    <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+
+    <svg class="circuit" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="traces">
+        <path class="trace" d="M0 140 H180 L210 170 H420 L450 140 H560"/>
+        <path class="trace" d="M1440 200 H1230 L1200 230 H1010 L980 200 H840"/>
+        <path class="trace" d="M90 900 V690 L120 660 V470 L150 440 V330"/>
+        <path class="trace" d="M1350 900 V760 L1320 730 V560"/>
+        <path class="trace" d="M0 470 H150 L185 505 H320 L355 470 H540 L575 505 H700"/>
+        <path class="trace" d="M1440 560 H1240 L1205 595 V720 H1320"/>
+        <path class="trace" d="M760 0 V120 L730 150 V250"/>
+        <path class="trace" d="M620 900 V780 L650 750 H800"/>
+      </g>
+      <g class="flows">
+        <path class="flow f1" pathLength="1000" d="M0 140 H180 L210 170 H420 L450 140 H560"/>
+        <path class="flow f2" pathLength="1000" d="M1440 200 H1230 L1200 230 H1010 L980 200 H840"/>
+        <path class="flow f3" pathLength="1000" d="M0 470 H150 L185 505 H320 L355 470 H540 L575 505 H700"/>
+        <path class="flow f4" pathLength="1000" d="M1440 560 H1240 L1205 595 V720 H1320"/>
+      </g>
+      <g class="pads">
+        <circle class="pad" cx="210" cy="170" r="6"/>
+        <circle class="pad" cx="1200" cy="230" r="6"/>
+        <circle class="pad" cx="120" cy="660" r="6"/>
+        <circle class="pad" cx="1205" cy="595" r="6"/>
+        <circle class="pad" cx="650" cy="750" r="6"/>
+        <circle class="pad" cx="185" cy="505" r="6"/>
+      </g>
+      <g class="nodes">
+        <circle class="node" cx="560" cy="140" r="4"/>
+        <circle class="node" cx="420" cy="170" r="3"/>
+        <circle class="node" cx="840" cy="200" r="4"/>
+        <circle class="node" cx="1010" cy="230" r="3"/>
+        <circle class="node" cx="150" cy="330" r="4"/>
+        <circle class="node" cx="1320" cy="560" r="4"/>
+        <circle class="node" cx="700" cy="505" r="4"/>
+        <circle class="node" cx="575" cy="505" r="3"/>
+        <circle class="node" cx="1320" cy="720" r="4"/>
+        <circle class="node" cx="760" cy="250" r="4"/>
+        <circle class="node" cx="800" cy="750" r="4"/>
+        <circle class="node" cx="320" cy="505" r="3"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="wrap hero-inner">
+    <span class="hero-badge" data-hero style="--d:80">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Taytay, Rizal · Philippines
+    </span>
+
+    <h1 class="hero-title">
+      <span class="ln" data-hero style="--d:180">Patrick Scott</span>
+      <span class="ln" data-hero style="--d:300">Dayoan</span>
+    </h1>
+
+    <div class="roles" data-hero style="--d:440" aria-label="Computer Engineer, Embedded Systems, Tech Enthusiast">
+      <span class="role on">Computer Engineer</span><span class="dot">·</span>
+      <span class="role">Embedded Systems</span><span class="dot">·</span>
+      <span class="role">Tech Enthusiast</span>
+    </div>
+
+    <p class="hero-tagline" data-hero style="--d:560">
+      Turning ideas into <span class="hl">reality</span>, one <span class="hl">circuit</span> at a time.
+    </p>
+
+    <div class="hero-cta" data-hero style="--d:680">
+      <a href="#projects" class="btn btn-lg btn-primary">
+        See My Work
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+      </a>
+      <a href="#contact" class="btn btn-lg btn-secondary">Get In Touch</a>
+      <a href="Dayoan_Resume_LinkedIn.pdf" download class="btn btn-lg btn-secondary cv-btn">Download CV ↓</a>
+    </div>
+  </div>
+
+  <div class="scroll-ind" aria-hidden="true">
+    <span>Scroll</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">01 / About</span>
+        <h2 style="font-size:clamp(28px,4.4vw,44px);line-height:1.1;font-weight:600;letter-spacing:-.02em;color:var(--gray-900);margin:18px 0 28px;">Engineering across the stack — from silicon to signal.</h2>
+        <p>I'm a <b>Computer Engineering graduate</b> who lives where hardware meets the network. From soldering PCBs and crimping cables to standing up enterprise Wi-Fi and writing the firmware that ties it all together, I build systems that are reliable, automated, and a little bit clever.</p>
+        <p>I approach engineering with a <b>creative eye</b> — the same instinct I bring to multimedia and design — because the best technical work is also thoughtful work. My focus sits at the intersection of networking, embedded systems, and automation.</p>
+        <div class="about-sign"><span class="ln"></span>Based in Taytay, Rizal · Available for full-time roles in networking, embedded systems, or IT operations.</div>
+      </div>
+
+      <div class="stat-stack">
+        <div class="stat-card reveal" style="--i:1">
+          <span class="stat-corner">/ 01</span>
+          <div class="stat-value"><span class="num" data-target="300">0</span><span class="unit">hrs</span></div>
+          <div class="stat-label">Internship experience in operations &amp; technical work</div>
+        </div>
+        <div class="stat-card reveal" style="--i:2">
+          <span class="stat-corner">/ 02</span>
+          <div class="stat-value"><span class="num" data-target="4">0</span><span class="unit">-subsystem</span></div>
+          <div class="stat-label">Integrated capstone engineering project</div>
+        </div>
+        <div class="stat-card reveal" style="--i:3">
+          <span class="stat-corner">/ 03</span>
+          <div class="stat-value"><span class="num" data-target="10">0</span><span class="unit">+ tools</span></div>
+          <div class="stat-label">Across programming, networking &amp; hardware</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SKILLS ============================ -->
+<section class="section" id="skills" style="background:var(--gray-25)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">02 / Capabilities</span>
+      <h2>A toolkit that spans code, networks, and hardware.</h2>
+      <p>Hands-on across four disciplines — written, configured, wired, and edited.</p>
+    </div>
+
+    <div class="skills-grid">
+      <!-- Programming -->
+      <article class="skill-card reveal" style="--i:1">
+        <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3>Programming</h3>
+        <div class="skill-sub">// languages &amp; automation</div>
+        <div class="tag-row">
+          <span class="tag">Java</span><span class="tag">Python</span><span class="tag">Arduino C/C++</span>
+          <span class="tag">Google Apps Script</span><span class="tag">Selenium</span>
+        </div>
+      </article>
+
+      <!-- Networking -->
+      <article class="skill-card reveal" style="--i:2">
+        <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+        <h3>Networking</h3>
+        <div class="skill-sub">// deploy &amp; secure</div>
+        <div class="tag-row">
+          <span class="tag">TP-Link Omada</span><span class="tag">VPN Gateway</span><span class="tag">PoE+</span>
+          <span class="tag">Wi-Fi 6</span><span class="tag">SSID config</span><span class="tag">Captive portal</span>
+          <span class="tag">Content filtering</span>
+        </div>
+      </article>
+
+      <!-- Hardware -->
+      <article class="skill-card reveal" style="--i:3">
+        <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+        <h3>Hardware</h3>
+        <div class="skill-sub">// design &amp; build</div>
+        <div class="tag-row">
+          <span class="tag">PCB Design (EasyEDA)</span><span class="tag">CAD (Onshape)</span>
+          <span class="tag">RJ45 crimping</span><span class="tag">Structured cabling</span>
+          <span class="tag">Hardware assembly</span>
+        </div>
+      </article>
+
+      <!-- Multimedia -->
+      <article class="skill-card reveal" style="--i:4">
+        <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18M17 3v18M3 7.5h4M3 12h18M3 16.5h4M17 7.5h4M17 16.5h4"/></svg></div>
+        <h3>Multimedia</h3>
+        <div class="skill-sub">// design &amp; edit</div>
+        <div class="tag-row">
+          <span class="tag">Photoshop</span><span class="tag">Lightroom</span><span class="tag">Canva</span>
+          <span class="tag">DaVinci Resolve</span><span class="tag">CapCut</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROJECTS ============================ -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">03 / Selected work</span>
+      <h2>Things I've designed, built, and deployed.</h2>
+      <p>Two flagship projects — one I engineered from the ground up, one I deployed into the field.</p>
+    </div>
+
+    <div class="projects-list">
+      <!-- Project 01 -->
+      <article class="project reveal">
+        <div class="project-content">
+          <div class="project-num">01 <span class="badge">BS CompE Capstone · 2025</span></div>
+          <h3>Arduino Self-Lifting Motorcycle Platform</h3>
+          <p>An automated flood-protection platform with a pneumatic scissor-lift, a pressurized water rinser, and GSM anti-theft detection — all orchestrated by Arduino.</p>
+          <div class="tag-row">
+            <span class="tag">Arduino</span><span class="tag">C/C++</span><span class="tag">Embedded Systems</span><span class="tag">Hardware</span>
+          </div>
+          <button class="project-link" data-modal="modal-1">
+            View Details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </button>
+        </div>
+        <div class="project-visual" aria-hidden="true">
+          <div class="pv-grid"></div><div class="pv-glow"></div>
+          <span class="pv-num">01</span>
+          <div class="pv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div>
+        </div>
+      </article>
+
+      <!-- Project 02 -->
+      <article class="project flip reveal">
+        <div class="project-content">
+          <div class="project-num">02 <span class="badge">Field deployment · iOne Resources</span></div>
+          <h3>DepEd SWIP Network Deployment</h3>
+          <p>Rolled out TP-Link Omada systems across multiple DepEd school sites — validating 40&nbsp;Mbps benchmarks and configuring captive portals, content filtering, and voucher authentication.</p>
+          <div class="tag-row">
+            <span class="tag">Networking</span><span class="tag">TP-Link Omada</span><span class="tag">Wi-Fi 6</span><span class="tag">Government</span>
+          </div>
+          <button class="project-link" data-modal="modal-2">
+            View Details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </button>
+        </div>
+        <div class="project-visual" aria-hidden="true">
+          <div class="pv-grid"></div><div class="pv-glow"></div>
+          <span class="pv-num">02</span>
+          <div class="pv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EXPERIENCE ============================ -->
+<section class="section" id="experience" style="background:var(--gray-25)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 / Journey</span>
+      <h2>The path so far.</h2>
+      <p>Where I've worked, contributed, and studied.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal" style="--i:1">
+        <span class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+        <div class="tl-card">
+          <div class="tl-top">
+            <span class="tl-org">iOne Resources Inc.</span>
+            <span class="tl-date">Feb–Apr 2026</span>
+          </div>
+          <div class="tl-role">OJT Intern — Operations &amp; Technical</div>
+          <span class="tl-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Pasig City</span>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" style="--i:2">
+        <span class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></span>
+        <div class="tl-card">
+          <div class="tl-top">
+            <span class="tl-org">ACEs</span>
+            <span class="tl-date">2024–2025</span>
+          </div>
+          <div class="tl-role">Multimedia Officer</div>
+          <span class="tl-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>STI Ortigas-Cainta</span>
+        </div>
+      </div>
+
+      <div class="tl-item is-edu reveal" style="--i:3">
+        <span class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+        <div class="tl-card">
+          <div class="tl-top">
+            <span class="tl-org">STI College Ortigas-Cainta</span>
+            <span class="tl-date">2022–2026</span>
+          </div>
+          <div class="tl-role">BS Computer Engineering</div>
+          <span class="tl-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Cainta, Rizal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CERTIFICATIONS ============================ -->
+<section class="section" id="certifications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">05 / Credentials</span>
+      <h2>Verified along the way.</h2>
+      <p>Coursework and credentials in CAD, simulation, and software fundamentals. Click any card to view the full certificate.</p>
+    </div>
+
+    <div class="cert-row">
+      <article class="cert-card reveal" style="--i:1">
+        <button type="button" class="cert-thumb" data-lightbox="cert-intro2drawings.jpg" data-title="Introduction to Drawings — Onshape" aria-label="View certificate: Introduction to Drawings">
+          <img src="cert-intro2drawings.jpg" alt="Onshape — Introduction to Drawings certificate" loading="lazy" onerror="this.style.display='none'" />
+          <span class="cert-thumb-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
+            <span>Add certificate photo</span>
+          </span>
+          <span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </button>
+        <div class="cert-body">
+          <h4>Introduction to Drawings</h4>
+          <div class="cert-issuer">Onshape</div>
+          <div class="cert-date">Nov 25, 2024</div>
+        </div>
+      </article>
+
+      <article class="cert-card reveal" style="--i:2">
+        <button type="button" class="cert-thumb" data-lightbox="cert-intro2onshapesim.jpg" data-title="Introduction to Simulation — Onshape" aria-label="View certificate: Introduction to Simulation">
+          <img src="cert-intro2onshapesim.jpg" alt="Onshape — Introduction to Simulation certificate" loading="lazy" onerror="this.style.display='none'" />
+          <span class="cert-thumb-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
+            <span>Add certificate photo</span>
+          </span>
+          <span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </button>
+        <div class="cert-body">
+          <h4>Introduction to Simulation</h4>
+          <div class="cert-issuer">Onshape</div>
+          <div class="cert-date">Dec 12, 2024</div>
+        </div>
+      </article>
+
+      <article class="cert-card reveal" style="--i:3">
+        <button type="button" class="cert-thumb" data-lightbox="cert-oracle.jpg" data-title="Java Fundamentals — Oracle Academy" aria-label="View certificate: Java Fundamentals">
+          <img src="cert-oracle.jpg" alt="Oracle Academy — Java Fundamentals certificate" loading="lazy" onerror="this.style.display='none'" />
+          <span class="cert-thumb-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
+            <span>Add certificate photo</span>
+          </span>
+          <span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </button>
+        <div class="cert-body">
+          <h4>Java Fundamentals</h4>
+          <div class="cert-issuer">Oracle Academy</div>
+          <div class="cert-date">Jan 26, 2023</div>
+        </div>
+      </article>
+
+      <article class="cert-card reveal" style="--i:4">
+        <button type="button" class="cert-thumb" data-lightbox="cert-intro2surfacing.jpg" data-title="Introduction to Surfacing — Onshape" aria-label="View certificate: Introduction to Surfacing">
+          <img src="cert-intro2surfacing.jpg" alt="Onshape — Introduction to Surfacing certificate" loading="lazy" onerror="this.style.display='none'" />
+          <span class="cert-thumb-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
+            <span>Add certificate photo</span>
+          </span>
+          <span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </button>
+        <div class="cert-body">
+          <h4>Introduction to Surfacing</h4>
+          <div class="cert-issuer">Onshape</div>
+          <div class="cert-date">Oct 18, 2024</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="section contact" id="contact" style="background:var(--gray-25)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="justify-content:center">06 / Get in touch</span>
+      <h2>Let's build something.</h2>
+      <p>Have a project, a role, or an idea you want to build? I'd love to hear about it.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <a class="contact-item" href="mailto:psdayoan@gmail.com">
+          <span class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+          <span><span class="ci-label">Email</span><span class="ci-value">psdayoan@gmail.com</span></span>
+        </a>
+        <a class="contact-item" href="tel:+639275118435">
+          <span class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><span class="ci-label">Phone</span><span class="ci-value">0927 511 8435</span></span>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/scottdyn/" target="_blank" rel="noopener">
+          <span class="ci-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></span>
+          <span><span class="ci-label">LinkedIn</span><span class="ci-value">in/scottdyn</span></span>
+        </a>
+        <a class="contact-item" href="https://github.com/Iskyuno" target="_blank" rel="noopener">
+          <span class="ci-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></span>
+          <span><span class="ci-label">GitHub</span><span class="ci-value">Iskyuno</span></span>
+        </a>
+        <div class="contact-item">
+          <span class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><span class="ci-label">Location</span><span class="ci-value">Taytay, Rizal</span></span>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/xwvzjrzl" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New message from Portfolio" />
+        <input type="hidden" name="_next" value="" />
+        <div class="wave-group" id="g-firstName">
+          <input required type="text" class="input" id="in-firstName" name="firstName" autocomplete="given-name" />
+          <span class="bar"></span>
+          <label class="label" for="in-firstName">
+            <span class="label-char" style="--index:0">F</span>
+            <span class="label-char" style="--index:1">i</span>
+            <span class="label-char" style="--index:2">r</span>
+            <span class="label-char" style="--index:3">s</span>
+            <span class="label-char" style="--index:4">t</span>
+            <span class="label-char" style="--index:5">&nbsp;</span>
+            <span class="label-char" style="--index:6">N</span>
+            <span class="label-char" style="--index:7">a</span>
+            <span class="label-char" style="--index:8">m</span>
+            <span class="label-char" style="--index:9">e</span>
+          </label>
+          <small class="wave-error" data-error></small>
+        </div>
+        <div class="wave-group" id="g-lastName">
+          <input required type="text" class="input" id="in-lastName" name="lastName" autocomplete="family-name" />
+          <span class="bar"></span>
+          <label class="label" for="in-lastName">
+            <span class="label-char" style="--index:0">L</span>
+            <span class="label-char" style="--index:1">a</span>
+            <span class="label-char" style="--index:2">s</span>
+            <span class="label-char" style="--index:3">t</span>
+            <span class="label-char" style="--index:4">&nbsp;</span>
+            <span class="label-char" style="--index:5">N</span>
+            <span class="label-char" style="--index:6">a</span>
+            <span class="label-char" style="--index:7">m</span>
+            <span class="label-char" style="--index:8">e</span>
+          </label>
+          <small class="wave-error" data-error></small>
+        </div>
+        <div class="wave-group" id="g-email">
+          <input required type="email" class="input" id="in-email" name="email" autocomplete="email" />
+          <span class="bar"></span>
+          <label class="label" for="in-email">
+            <span class="label-char" style="--index:0">E</span>
+            <span class="label-char" style="--index:1">m</span>
+            <span class="label-char" style="--index:2">a</span>
+            <span class="label-char" style="--index:3">i</span>
+            <span class="label-char" style="--index:4">l</span>
+            <span class="label-char" style="--index:5">&nbsp;</span>
+            <span class="label-char" style="--index:6">A</span>
+            <span class="label-char" style="--index:7">d</span>
+            <span class="label-char" style="--index:8">d</span>
+            <span class="label-char" style="--index:9">r</span>
+            <span class="label-char" style="--index:10">e</span>
+            <span class="label-char" style="--index:11">s</span>
+            <span class="label-char" style="--index:12">s</span>
+          </label>
+          <small class="wave-error" data-error></small>
+        </div>
+        <div class="wave-group" id="g-subject">
+          <input required type="text" class="input" id="in-subject" name="subject" autocomplete="off" />
+          <span class="bar"></span>
+          <label class="label" for="in-subject">
+            <span class="label-char" style="--index:0">S</span>
+            <span class="label-char" style="--index:1">u</span>
+            <span class="label-char" style="--index:2">b</span>
+            <span class="label-char" style="--index:3">j</span>
+            <span class="label-char" style="--index:4">e</span>
+            <span class="label-char" style="--index:5">c</span>
+            <span class="label-char" style="--index:6">t</span>
+          </label>
+          <small class="wave-error" data-error></small>
+        </div>
+        <div class="wave-group" id="g-message">
+          <textarea required class="input" id="in-message" name="message" rows="3"></textarea>
+          <span class="bar"></span>
+          <label class="label" for="in-message">
+            <span class="label-char" style="--index:0">M</span>
+            <span class="label-char" style="--index:1">e</span>
+            <span class="label-char" style="--index:2">s</span>
+            <span class="label-char" style="--index:3">s</span>
+            <span class="label-char" style="--index:4">a</span>
+            <span class="label-char" style="--index:5">g</span>
+            <span class="label-char" style="--index:6">e</span>
+          </label>
+          <small class="wave-error" data-error></small>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary">
+          Send Message
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="brand"><span class="mark"><img src="dayoan_idpic.jpg" alt="Scott Dayoan" /></span><span class="name">Patrick Scott Dayoan</span></a>
+        <p>Computer Engineer open to opportunities in embedded systems and tech. Based in Taytay, Rizal, Philippines.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Navigate</h5>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <a href="mailto:psdayoan@gmail.com">Email</a>
+          <a href="tel:+639275118435">Phone</a>
+          <a href="https://www.linkedin.com/in/scottdyn/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Iskyuno" target="_blank" rel="noopener">GitHub</a>
+          <a href="#contact">Contact form</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> Patrick Scott R. Dayoan. All rights reserved.</p>
+      <a href="#top" class="to-top">Back to top
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================ MODALS ============================ -->
+<div class="modal" id="modal-1" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="m1-title">
+    <button class="modal-close" data-close aria-label="Close dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="modal-head">
+      <span class="eyebrow">Capstone · 2025</span>
+      <h3 id="m1-title">Arduino Self-Lifting Motorcycle Platform</h3>
+    </div>
+    <div class="modal-body">
+      <p>A BS Computer Engineering capstone: an automated flood-protection platform that keeps a parked motorcycle safe when water levels rise. When flooding is detected, a pneumatic scissor-lift raises the vehicle clear of the water, while integrated safety and security subsystems keep it protected the whole time. The entire system is sensed, sequenced, and controlled by Arduino.</p>
+      <h4>// Four integrated subsystems</h4>
+      <ul class="feature-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Pneumatic scissor-lift</b> — raises the motorcycle above flood level on demand.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Flood / water-level sensing</b> — triggers the lift automatically as water rises.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Pressurized water rinser</b> — cleans the vehicle of floodwater residue.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>GSM anti-theft detection</b> — sends SMS alerts to the owner on tamper events.</span></li>
+      </ul>
+      <h4>// Stack</h4>
+      <div class="tag-row">
+        <span class="tag">Arduino</span><span class="tag">C/C++</span><span class="tag">Embedded Systems</span>
+        <span class="tag">Sensors &amp; Actuators</span><span class="tag">GSM Module</span><span class="tag">Hardware</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-2" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="m2-title">
+    <button class="modal-close" data-close aria-label="Close dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="modal-head">
+      <span class="eyebrow">Field deployment · iOne Resources</span>
+      <h3 id="m2-title">DepEd SWIP Network Deployment</h3>
+    </div>
+    <div class="modal-body">
+      <p>As part of iOne Resources' work on the DepEd School Wi-Fi Internet Program (SWIP), I helped deploy and configure TP-Link Omada networking systems across multiple school sites — taking each site from cabling and access-point mounting through to a benchmarked, secured, and managed network.</p>
+      <h4>// What I delivered</h4>
+      <ul class="feature-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Validated 40&nbsp;Mbps benchmarks</b> — confirmed throughput targets at each site.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Captive portals &amp; voucher auth</b> — controlled, accountable guest access.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Content filtering</b> — safe, education-appropriate browsing for schools.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Structured cabling &amp; PoE+ APs</b> — clean, reliable Wi-Fi 6 coverage.</span></li>
+      </ul>
+      <h4>// Stack</h4>
+      <div class="tag-row">
+        <span class="tag">TP-Link Omada</span><span class="tag">Wi-Fi 6</span><span class="tag">PoE+</span>
+        <span class="tag">Captive Portal</span><span class="tag">Content Filtering</span><span class="tag">Government / DepEd</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ LIGHTBOX ============================ -->
+<div class="modal lightbox" id="lightbox" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <figure class="lightbox-figure" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <button class="modal-close lightbox-close" data-close aria-label="Close preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <img id="lightboxImg" src="" alt="Certificate preview" />
+    <figcaption id="lightboxCap"></figcaption>
+  </figure>
+</div>
+
+<!-- ============================ TOAST ============================ -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10.01-3-3"/></svg></span>
+  <div><div class="t-title">Message ready to send</div><div class="t-msg" id="toastMsg">Thanks, Patrick will get back to you soon.</div></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Footer year ---- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---- Dark mode toggle (persisted in localStorage) ---- */
+  var darkToggle = document.getElementById('dark-toggle');
+  if (darkToggle){
+    darkToggle.checked = document.body.classList.contains('dark');
+    darkToggle.addEventListener('change', function(){
+      var on = darkToggle.checked;
+      document.body.classList.toggle('dark', on);
+      try{ localStorage.setItem('theme', on ? 'dark' : 'light'); }catch(e){}
+    });
+  }
+
+  /* ---- Header scrolled state ---- */
+  var header = document.querySelector('.site-header');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ---- Mobile menu ---- */
+  var menuBtn = document.getElementById('menuBtn');
+  var navLinks = document.getElementById('navLinks');
+  function closeMenu(){ navLinks.classList.remove('show'); menuBtn.setAttribute('aria-expanded','false'); }
+  menuBtn.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('show');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  /* ---- Scroll reveal ---- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var rObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in-view'); rObs.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ rObs.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ---- Scroll-spy active nav ---- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var sections = links.map(function(l){ return document.querySelector(l.getAttribute('href')); });
+  if ('IntersectionObserver' in window){
+    var sObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          var id = '#' + e.target.id;
+          links.forEach(function(l){ l.classList.toggle('active', l.getAttribute('href') === id); });
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+    sections.forEach(function(s){ if (s) sObs.observe(s); });
+  }
+
+  /* ---- Count-up stats ---- */
+  var nums = document.querySelectorAll('.num[data-target]');
+  function countUp(el){
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    if (reduce){ el.textContent = target; return; }
+    var dur = 1500, start = null;
+    function ease(t){ return 1 - Math.pow(1 - t, 3); }
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      el.textContent = Math.round(ease(p) * target);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window){
+    var cObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ countUp(e.target); cObs.unobserve(e.target); }
+      });
+    }, {threshold:0.6});
+    nums.forEach(function(n){ cObs.observe(n); });
+  } else {
+    nums.forEach(countUp);
+  }
+
+  /* ---- Hero role cycle ---- */
+  var roles = document.querySelectorAll('.role');
+  if (roles.length && !reduce){
+    var ri = 0;
+    setInterval(function(){
+      roles.forEach(function(r, i){ r.classList.toggle('on', i === ri); });
+      ri = (ri + 1) % roles.length;
+    }, 2200);
+  }
+
+  /* ---- Project modals ---- */
+  var lastFocused = null;
+  function openModal(id){
+    var m = document.getElementById(id);
+    if (!m) return;
+    lastFocused = document.activeElement;
+    m.classList.add('open');
+    m.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    var closeBtn = m.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
+  }
+  function closeModal(m){
+    m.classList.remove('open');
+    m.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if (lastFocused) lastFocused.focus();
+  }
+  document.querySelectorAll('[data-modal]').forEach(function(btn){
+    btn.addEventListener('click', function(){ openModal(btn.getAttribute('data-modal')); });
+  });
+
+  /* ---- Certificate lightbox ---- */
+  var lbImg = document.getElementById('lightboxImg');
+  var lbCap = document.getElementById('lightboxCap');
+  document.querySelectorAll('[data-lightbox]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (lbImg){
+        lbImg.setAttribute('src', btn.getAttribute('data-lightbox'));
+        lbImg.setAttribute('alt', btn.getAttribute('data-title') || 'Certificate preview');
+      }
+      if (lbCap){ lbCap.textContent = btn.getAttribute('data-title') || ''; }
+      openModal('lightbox');
+    });
+  });
+
+  document.querySelectorAll('.modal').forEach(function(m){
+    m.querySelectorAll('[data-close]').forEach(function(c){
+      c.addEventListener('click', function(){ closeModal(m); });
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      var open = document.querySelector('.modal.open');
+      if (open) closeModal(open);
+    }
+  });
+
+  /* ---- Contact form ---- */
+  var form = document.getElementById('contactForm');
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+  function showToast(){
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 4500);
+  }
+  function setErr(groupId, msg){
+    var g = document.getElementById(groupId);
+    if (!g) return !msg;
+    var err = g.querySelector('[data-error]');
+    if (msg){ g.classList.add('err'); if (err) err.textContent = msg; }
+    else { g.classList.remove('err'); if (err) err.textContent = ''; }
+    return !msg;
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var firstName = form.firstName.value.trim();
+    var lastName  = form.lastName.value.trim();
+    var email     = form.email.value.trim();
+    var subject   = form.subject.value.trim();
+    var message   = form.message.value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    var ok = true;
+    ok = setErr('g-firstName', firstName ? '' : 'Please enter your first name.') && ok;
+    ok = setErr('g-lastName',  lastName  ? '' : 'Please enter your last name.')  && ok;
+    ok = setErr('g-email', email ? (emailOk ? '' : 'Please enter a valid email.') : 'Please enter your email.') && ok;
+    ok = setErr('g-subject', subject ? '' : 'Please add a subject.') && ok;
+    ok = setErr('g-message', message ? '' : 'Please add a short message.') && ok;
+    if (!ok){
+      var firstErr = form.querySelector('.wave-group.err .input');
+      if (firstErr) firstErr.focus();
+      return;
+    }
+    var submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){
+      if (res.ok){
+        document.getElementById('toastMsg').textContent = 'Thanks ' + firstName + ', Patrick will get back to you soon.';
+        form.reset();
+      } else {
+        document.getElementById('toastMsg').textContent = 'Sorry, something went wrong. Please email psdayoan@gmail.com directly.';
+      }
+      showToast();
+    }).catch(function(){
+      document.getElementById('toastMsg').textContent = 'Network error. Please email psdayoan@gmail.com directly.';
+      showToast();
+    }).finally(function(){
+      if (submitBtn) submitBtn.disabled = false;
+    });
+  });
+  /* clear a field's error as soon as the user edits it */
+  form.querySelectorAll('.wave-group .input').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      var g = inp.closest('.wave-group');
+      if (g) g.classList.remove('err');
+    });
+  });
+})();
+</script>
+</body>
+</html>
