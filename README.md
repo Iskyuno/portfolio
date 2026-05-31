@@ -8,6 +8,13 @@ Personal portfolio site of **Patrick Scott Dayoan** — Computer Engineer (Embed
 
 A single-page, responsive portfolio built with plain HTML, CSS, and JavaScript — no frameworks. Includes a dark-mode toggle, an animated hero, project case studies with modals, certifications with a lightbox, and a working contact form.
 
+## Features
+
+- Light/dark theme toggle (preference saved to `localStorage`)
+- Animated hero, project case-study modals, and a certificate lightbox
+- Validated contact form with success toast
+- Responsive layout, accessible focus states, and reduced-motion support
+
 ## Tech
 
 - HTML5 / CSS3 (custom design tokens) / vanilla JavaScript
